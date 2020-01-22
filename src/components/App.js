@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Episode from './Episode';
 import '../scss/App.scss';
 
 const App = () => {
@@ -15,10 +16,10 @@ const App = () => {
   };
 
   const episodesList = episodes.results.map(el => {
-    return <p>{el.name}</p>;
+    return <Episode data={el} key={el.id}></Episode>;
   });
 
-  return <div className="App">{episodesList}</div>;
+  return <div className="app">{episodesList}</div>;
 };
 
 export default App;
