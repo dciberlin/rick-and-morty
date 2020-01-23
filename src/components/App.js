@@ -1,25 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import Episode from './Episode';
+import React from 'react';
 import '../scss/App.scss';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import EpisodesList from './EpisodesList';
+import CharactersList from './CharactersList';
+import Navigation from './Navigation';
 
 const App = () => {
-  const [episodes, setEpisodes] = useState({ info: {}, results: [] });
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const url = `https://rickandmortyapi.com/api/episode`;
-    const data = await (await fetch(url)).json();
-    setEpisodes(data);
-  };
-
-  const episodesList = episodes.results.map(el => {
-    return <Episode data={el} key={el.id}></Episode>;
-  });
-
-  return <div className="app">{episodesList}</div>;
+  return (
+    <BrowserRouter>
+      <div className="app">
+        <Switch>
+          <Route path="/episodes">
+            <EpisodesList />
+          </Route>
+          <Route path="/characters">
+            <CharactersList />
+          </Route>
+          <Route path="/">
+            <Navigation></Navigation>
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
+  );
 };
 
 export default App;

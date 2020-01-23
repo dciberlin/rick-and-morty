@@ -1,11 +1,11 @@
 import React from 'react';
-
+import grumpy from '../statics/grumpy.jpeg';
 const Character = props => {
   const { name, image } = props.data;
 
   return (
     <div className="character">
-      <img src={image} alt={name} />
+      {image ? <img src={image} alt={name} /> : <img src={grumpy}></img>}
       <p>{name}</p>
     </div>
   );
